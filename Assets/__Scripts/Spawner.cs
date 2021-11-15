@@ -77,7 +77,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; enemyList.Count > i; i++)
         {
             Enemy enemy = enemyList[i].GetComponent<Enemy>();
-            enemy.SetMaxHealth(3);
+            enemy.SetMaxHealth(Random.Range(5f, 15f));
             enemy.Heal(enemy.maxHealth);
             switch(Random.Range(1, 5))
             {
@@ -107,7 +107,7 @@ public class Spawner : MonoBehaviour
 
     void Buff(Enemy enem)
     {
-        enem.SetMaxHealth(3);
+        enem.SetMaxHealth(Random.Range(5f, 15f));
         switch (Random.Range(1, 5))
         {
             case 1:

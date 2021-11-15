@@ -7,6 +7,7 @@ using TMPro;
 public class Menu : MonoBehaviour
 {
     public TextMeshProUGUI highScoreText;
+    public AudioManager audioManager;
 
     bool waitForLoad;
     float timer;
@@ -24,6 +25,13 @@ public class Menu : MonoBehaviour
     {
         waitForLoad = false;
         timerWait = 1.0f;
+        if (highScoreText == null)
+        {
+            audioManager.Play("Music");
+        } else
+        {
+            audioManager.Play("TitleScreen");
+        }
     }
 
     void Update()

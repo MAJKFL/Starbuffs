@@ -7,8 +7,11 @@ public class Movement : MonoBehaviour
 {
     public float moveSpeed = 1;
     public Canvas canvas;
+    public HealthBar slowMotionBar;
+    public Hero hero;
+    public AudioManager audioManager;
 
-    bool isBoosting;
+    bool slowMotion;
     bool down;
     float bannedAngle;
     Transform cameraHolder;
@@ -16,6 +19,7 @@ public class Movement : MonoBehaviour
     Vector2 movement;
     Rigidbody2D rb;
     Vector2 mousePos;
+    bool tooLongSlowMotion = false;
     
     void Awake()
     {
@@ -34,25 +38,48 @@ public class Movement : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90;
         rb.rotation = angle;
         canvas.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.1f);
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isBoosting) Boost();
-        if (Input.GetKeyUp(KeyCode.LeftShift) && isBoosting) Boost();
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !slowMotion && !tooLongSlowMotion) ToggleSlowMotion();
+        if (Input.GetKeyUp(KeyCode.LeftShift) && slowMotion) ToggleSlowMotion();
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * 1.1f * Time.fixedDeltaTime);
+        if (slowMotion)
+        {
+            slowMotionBar.changeValue -= 1.75f;
+        }
+        if (!slowMotion && slowMotionBar.changeValue <= slowMotionBar.setMaxHealth)
+        {
+            slowMotionBar.changeValue += 0.5f;
+        }
+        if (slowMotionBar.changeValue >= slowMotionBar.setMaxHealth)
+        {
+            tooLongSlowMotion = false;
+        }
+        if (slowMotionBar.changeValue <= 0)
+        {
+            audioManager.Play("ToLongSlowMo");
+            tooLongSlowMotion = true;
+            ToggleSlowMotion();
+        }
     }
 
-    public void Boost()
+    public void ToggleSlowMotion()
     {
-        if (!isBoosting)
+        if (!slowMotion)
         {
-            moveSpeed *= 1.1f;
-            isBoosting = true;
+            Time.timeScale = 0.7f;
+            hero.fireRate = hero.fireRate / 2;
+            moveSpeed *= 1.2f;
+            slowMotion = true;
         }
-        else { 
-            moveSpeed = moveSpeed / 11 * 10;
-            isBoosting = false;
+        else
+        {
+            Time.timeScale = 1.0f;
+            hero.fireRate = hero.fireRate * 2;
+            moveSpeed /= 1.2f;
+            slowMotion = false;
         }
     }
 }

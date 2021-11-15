@@ -19,6 +19,7 @@ public class Main : MonoBehaviour
     public Spawner spawner;
     public Transform cameraHolder;
     public GameObject mapButton;
+    public AudioManager audioManager;
     
     int killCount;
     int buffCounter;
@@ -37,6 +38,7 @@ public class Main : MonoBehaviour
         pointsCounter.text = "" + points;
         pointsNeedToTakeOverText.text = "" + pointsNeedToTakeOver;
         if (GameObject.Find("Spawner") != null) spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
+        if (Input.GetKeyDown(KeyCode.Tab)) MapView();
     }
 
     public void Defeat()
@@ -46,10 +48,14 @@ public class Main : MonoBehaviour
         Time.timeScale = 0.5f;
         defeat = true;
         Destroy(mapButton.GetComponent<Button>());
+        audioManager.stop("Music");
         if (Save.HighScore < killCount) 
-        { 
+        {
+            audioManager.Play("HighScore");
             Save.HighScore = killCount;
             highScoreText.SetActive(true);
+        } else {
+            audioManager.Play("Death");
         }
         if (spawner != null) Destroy(spawner.gameObject);
     }

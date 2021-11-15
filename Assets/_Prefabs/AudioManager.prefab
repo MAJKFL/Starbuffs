@@ -144,3 +144,66 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 120338d46bb8f9b4b897826b0ad03cdb, type: 3}
+    volume: 0.1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: HighScore
+    clip: {fileID: 8300000, guid: 0f643ac82a5860e42af2b094d05d2601, type: 3}
+    volume: 0.1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: e240dfb9a5a00c9458109c67fd6d9fab, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: TitleScreen
+    clip: {fileID: 8300000, guid: 6f30f9a8691cfa14bb0069760ca4601c, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Msuic3
+    clip: {fileID: 8300000, guid: 00b521c07ac63d24ab7679ec819d9f4f, type: 3}
+    volume: 0.1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: TitleScreen
+    clip: {fileID: 8300000, guid: 6f30f9a8691cfa14bb0069760ca4601c, type: 3}
+    volume: 0.263
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ToLongSlowMo
+    clip: {fileID: 8300000, guid: 8b88d2bc7909a2347bf87de4925d61b5, type: 3}
+    volume: 0.263
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}

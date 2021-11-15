@@ -35,7 +35,7 @@ public class Hero : MonoBehaviour
     void Update()
     {
         if (rotate) transform.Rotate(Vector3.forward *5* Time.deltaTime);
-        if (Input.GetButtonDown("Fire1")) Shoot();
+        if (Input.GetButton("Fire1")) Shoot();
         if (Input.GetKeyDown(KeyCode.E)) TakeOver();
         spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>();
         healthBar.setMaxHealth = maxHealth;
